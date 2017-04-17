@@ -409,6 +409,115 @@ private String category
 Provide setter and getter methods for type instance variable.
 Create an object of the EngineeringBook class and test.
 
+package day2;
+
+public class Book12 {
+	private int bookNo;
+	private String title;
+	private String author;
+	private float price;
+	
+	public int getBookNo() {
+		return bookNo;
+	}
+	public void setBookNo(int bookNo) {
+		this.bookNo = bookNo;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	
+}
+---------------------------------------------------------------------------
+package day2;
+
+public class Engibook extends Book12 {
+	private String category;
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+}
+------------------------------------------------------------------------------
+public class TestBook12
+{
+	public static void main(String[] args) 
+	{
+		
+	Engibook b1=new Engibook();
+	
+	Scanner sc=new Scanner(System.in);
+	int b=sc.nextInt();
+	String t=sc.next();
+	String a=sc.next();
+	float p=sc.nextInt();
+	String c=sc.next();
+
+	b1.setBookNo(b);
+	b1.setTitle(t);
+	b1.setAuthor(a);
+	b1.setPrice(p);
+	b1.setCategory(c);
+	System.out.println(b1.getBookNo());
+	System.out.println(b1.getTitle());
+	System.out.println(b1.getAuthor());
+	System.out.println(b1.getPrice());
+	System.out.println(b1.getCategory());
+}
+}
+=====================================================================
+
+12
+shiva
+amish
+200
+fantasy
+book no is 12
+title is shiva
+author is amish
+price is 200.0
+category is fantasy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
