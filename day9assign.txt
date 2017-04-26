@@ -1,0 +1,245 @@
+package filehandling;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class CopyFile {
+	public static void main(String[] args) {
+
+		File f=new File(args[0]);
+		if(f.exists())
+		{
+			System.out.println("file  exists");
+			try {
+				FileReader fr=new FileReader(args[0]);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+
+		}
+		else
+		{
+			System.out.println("file doesnot exist");
+		}
+		File f1=new File(args[1]);
+		if(f1.exists())
+		{
+			try {
+				Scanner sc=new Scanner(System.in);
+				System.out.println("do you want to overwrite ???? say y or n: ");
+				if(sc.next().equalsIgnoreCase("y"))
+				{
+					FileReader fr=new FileReader(args[0]);
+					FileWriter fw=new FileWriter(args[1]);
+					int ch;
+					while((ch=fr.read())!=-1)
+					{
+						fw.write(ch);
+					}
+					fr.close();
+					fw.close();
+				}
+				else
+				{
+					System.out.println("sorry cannot copy");
+				}
+				}			
+				catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			
+		}
+
+		else 
+		{
+			try {
+				f1.createNewFile();
+				FileReader fr=new FileReader(args[0]);
+				FileWriter fw=new FileWriter(args[1]);
+				int ch;
+				while((ch=fr.read())!=-1)
+				{
+					fw.write(ch);
+				}
+				fr.close();
+				fw.close();
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+}
+==============================================================================================================================================
+package filehandling;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class FileWrite 
+{
+public static void main(String[] args) 
+{
+	int i;
+	try {
+		File f=new File("letter.txt");
+		FileOutputStream fos=new FileOutputStream(f);
+		
+	
+	Scanner sc=new Scanner(System.in);
+	System.out.println("enter five lines of data");
+	String s[]=new String[5];
+	for( i=0;i<5;i++)
+	{
+		s[i]=sc.nextLine();
+	
+	byte b[]=s[i].getBytes();
+	fos.write(b);
+	
+	}
+	
+	System.out.println(f.length());
+	FileReader f1=new FileReader(f);
+	int ch;
+	while((ch=f1.read())!=-1)
+	{
+		System.out.print((char)ch);
+	}
+	fos.close();
+	f1.close();
+	f.delete();
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	
+	
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+}
+}
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+enter five lines of data
+how are u
+i am fine
+what abt u
+me too thank u
+ok bye
+48
+how are ui am finewhat abt ume too thank uok bye
+
+=================================================================================================================
+
+
+package filehandling;
+
+import java.io.File;
+import java.util.Scanner;
+
+public class DirectoryList {
+public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	System.out.println("enter directory name..");
+	File f1=new File(sc.next());
+	if(f1.isDirectory())
+	{
+		String str[]=f1.list();
+		for(int i=0;i<str.length;i++)
+		{
+			System.out.println(str[i]);
+		}
+	}
+	else
+	{
+		System.out.println("directory name doesnot exist");
+	}
+}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+enter directory name..
+shefali
+f1
+f2
+==============================================================================================================================================
+
+http://10.10.25.115.9000
+link for quiz
+
+====================================================================================================================================================
+package filehandling;
+
+public class Employees {
+	private int empNo;
+	private String empName;
+	private int empBasic;
+	public Employees(int empNo, String empName, int empBasic) {
+		super();
+		this.empNo = empNo;
+		this.empName = empName;
+		this.empBasic = empBasic;
+	}
+	public int getEmpNo() {
+		return empNo;
+	}
+	public String getEmpName() {
+		return empName;
+	}
+	public int getEmpBasic() {
+		return empBasic;
+	}
+	@Override
+	public String toString() {
+		return "Employees [empNo=" + empNo + ", empName=" + empName
+				+ ", empBasic=" + empBasic + "]";
+	}
+	
+}
+----------------------------------------------------------------------------------------------------------------------
+package filehandling;
+
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class WriteEmployee {
+public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	System.out.println("enter details of employees..");
+	Employees e=new Employees(sc.nextInt(),sc.next(),sc.nextInt());
+	try {
+		FileOutputStream fos=new FileOutputStream("emp.txt");
+		DataOutputStream dos=new DataOutputStream(fos);
+		dos.writeBytes(e.toString());
+		fos.close();
+		dos.close();
+	} catch (FileNotFoundException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+}
+}
+=====================================================================================================================
+
+
