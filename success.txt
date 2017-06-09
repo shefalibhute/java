@@ -1,0 +1,305 @@
+public class Flight1 
+{
+    private String flightId;
+    private String pilateName;
+    private String source;
+    private String destination;
+	public Flight1(String flightId, String pilateName, String source,
+			String destination) throws InvaliFlightDataException {
+		super();
+		if(flightId.startsWith("FLT"))
+		{
+		this.flightId = flightId;
+		}
+		else
+			throw new InvaliFlightDataException("flight id should start with FLT");
+		if(!pilateName.isEmpty()&&!source.isEmpty()&&!destination.isEmpty())
+		{
+		this.pilateName = pilateName;
+		this.source = source;
+		this.destination = destination;
+		}
+		else
+			throw new InvaliFlightDataException("please enter valid details");
+		
+	}
+	public Flight1() {
+		// TODO Auto-generated constructor stub
+	}
+	public String getFlightId() {
+		return flightId;
+	}
+	public String getPilateName() {
+		return pilateName;
+	}
+	public String getSource() {
+		return source;
+	}
+	public String getDestination() {
+		return destination;
+	}
+	public void setFlightId(String flightId) {
+		this.flightId = flightId;
+	}
+	public void setPilateName(String pilateName) {
+		this.pilateName = pilateName;
+	}
+	public void setSource(String source) {
+		this.source = source;
+	}
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+    
+    
+
+}
+-------------------------------------------------------------------------------------------------
+public class FlightDetails1 
+{
+public static void main(String[] args)
+{Scanner sc=new Scanner(System.in);
+
+	ArrayList<Flight1> arr=new ArrayList<Flight1>();
+	Flight1 f2[]=new Flight1[2];
+	for (int i = 0; i < 2; i++)
+	{
+	
+	f2[i]=new Flight1();
+	System.out.println("enter flightId ");
+	f2[i].setFlightId(sc.next());
+	System.out.println("enter pilotname ");
+	f2[i].setPilateName(sc.next());
+	System.out.println("enter source ");
+	f2[i].setSource(sc.next());
+	System.out.println("enter destination ");
+	f2[i].setDestination(sc.next());
+	arr.add(f2[i]);
+	}
+	
+	System.out.println("MENU");
+	System.out.println("1:Display all the flight details");
+	System.out.println("2:search flight");
+	System.out.println("3:delete flight");
+	System.out.println("4:add new flight");
+	System.out.println("enter your choice ");
+	int n=sc.nextInt();
+	switch (n)
+	{
+	
+	case 1:
+		for (int i = 0; i < arr.size(); i++)
+		{
+			System.out.println("displaying details of flight"+(i+1));
+			System.out.println("flight id: "+arr.get(i).getFlightId());
+			System.out.println("pilotname is: "+arr.get(i).getPilateName());
+			System.out.println("source is: "+arr.get(i).getSource());
+			System.out.println("destination is: "+arr.get(i).getDestination());
+			System.out.println("----------------------------------------------");
+		}
+		
+		break;
+		
+	case 2:
+		System.out.println("Enter flight id to search: ");
+		String fid=sc.next();
+		for (int i= 0; i < arr.size(); i++)
+		{
+			if(arr.get(i).getFlightId().equalsIgnoreCase(fid))
+			{
+				System.out.println("Displaying details of flight: "+fid);
+				System.out.println("flight id: "+arr.get(i).getFlightId());
+				System.out.println("pilotname is: "+arr.get(i).getPilateName());
+				System.out.println("source is: "+arr.get(i).getSource());
+				System.out.println("destination is: "+arr.get(i).getDestination());
+				System.out.println("----------------------------------------------");
+			}
+		}
+		break;
+		
+	case 3:
+	{
+		System.out.println("Enter flight id to delete: ");
+		String fid1=sc.next();
+		for (int i= 0; i < arr.size(); i++)
+		{
+		if(arr.get(i).getFlightId().equalsIgnoreCase(fid1))
+		{
+		arr.remove(f2[i]);
+		System.out.println("Removed details of flight"+fid1);
+		for (int j = 0; j < arr.size(); j++)
+		{
+			System.out.println("displaying details of flight"+(i+1));
+			System.out.println("flight id: "+arr.get(i).getFlightId());
+			System.out.println("pilotname is: "+arr.get(i).getPilateName());
+			System.out.println("source is: "+arr.get(i).getSource());
+			System.out.println("destination is: "+arr.get(i).getDestination());
+			System.out.println("----------------------------------------------");
+	}
+		}
+	}
+	}
+	break;
+	case 4:
+		System.out.println("adding details...");
+		for (int i = 0; i < 1; i++)
+		{
+		
+		f2[i]=new Flight1();
+		System.out.println("enter flightId ");
+		f2[i].setFlightId(sc.next());
+		System.out.println("enter pilotname ");
+		f2[i].setPilateName(sc.next());
+		System.out.println("enter source ");
+		f2[i].setSource(sc.next());
+		System.out.println("enter destination ");
+		f2[i].setDestination(sc.next());
+		arr.add(f2[i]);
+		}
+		System.out.println("displaying details...");
+		
+		for (int i = 0; i < arr.size(); i++)
+		{
+			System.out.println("displaying details of flight"+(i+1));
+			System.out.println("flight id: "+arr.get(i).getFlightId());
+			System.out.println("pilotname is: "+arr.get(i).getPilateName());
+			System.out.println("source is: "+arr.get(i).getSource());
+			System.out.println("destination is: "+arr.get(i).getDestination());
+			System.out.println("----------------------------------------------");
+		}
+		
+		break;
+		
+	
+
+	default:
+		break;
+	}
+	
+}
+}
+----------------------------------------------------------------------------------------------------------------
+
+public class Policy implements Serializable{
+	private String Policy_no;
+    private String poilcyholderName;
+    private String nomineeName;
+    transient private String policyType;
+	
+	
+	public void setPolicy_no(String policy_no) throws InvaliPolicyException{
+	if(policy_no.startsWith("P")&&policy_no.length()==4)	
+	{
+		Policy_no = policy_no;
+	}
+	else
+		throw new InvaliPolicyException("Policy must starts with P and length should be 4");
+	}
+	public void setPoilcyholderName(String poilcyholderName) throws InvaliPolicyException{ 
+	if(!poilcyholderName.isEmpty())
+	{
+		this.poilcyholderName = poilcyholderName;
+	}
+	else
+	{
+		throw new InvaliPolicyException("please enter pholder name");
+	}
+	}
+	public void setNomineeName(String nomineeName) throws InvaliPolicyException {
+		if(!nomineeName.isEmpty())
+			this.nomineeName = nomineeName;
+		else
+		{
+			throw new InvaliPolicyException("please enter nominee name");
+		}
+		
+	}
+	public void setPolicyType(String policyType) throws InvaliPolicyException {
+		if(policyType.equalsIgnoreCase("JivanSaral")||policyType.equalsIgnoreCase("smartkid"))
+		this.policyType = policyType;
+		else
+		{
+			throw new InvaliPolicyException("policy type must be jivan saral or smartkid");
+		}
+	}
+	public String getPolicy_no() {
+		return Policy_no;
+	}
+	public String getPoilcyholderName() {
+		return poilcyholderName;
+	}
+	public String getNomineeName() {
+		return nomineeName;
+	}
+	public String getPolicyType() {
+		return policyType;
+	}
+	@Override
+	public String toString() {
+		return "Policy [Policy_no=" + Policy_no + ", poilcyholderName="
+				+ poilcyholderName + ", nomineeName=" + nomineeName + "]";
+	}
+    
+    
+
+
+}
+-----------------------------------------------------------------------------------------------
+public class CalculateAreas 
+{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		Policy po[]=new Policy[2];
+		
+		for (int i = 0; i < 2; i++) 
+		{
+			
+			try {
+				po[i]=new Policy();
+				System.out.println("Enter policy no" +(i+1));
+				po[i].setPolicy_no(sc.next());
+				System.out.println("Enter policy holdername: ");
+				po[i].setPoilcyholderName(sc.next());
+				System.out.println("Enter policy nominee: ");
+				po[i].setNomineeName(sc.next());
+				System.out.println("Enter policy type: ");
+				po[i].setPolicyType(sc.next());
+				
+			}
+			
+			catch (InvaliPolicyException e)
+			{
+				System.out.println(e.getMessage());
+				System.exit(0);
+			}
+			
+		}
+		
+		try {
+			File f=new File("Policy.txt");
+			FileOutputStream fos=new FileOutputStream(f);
+			//ObjectOutputStream oos=new ObjectOutputStream(fos);
+			DataOutputStream dos=new DataOutputStream(fos);
+			
+			
+			for (int i = 0; i < 2; i++) 
+			//oos.writeObject(po[i]);
+			dos.writeBytes(po[i].toString());
+			fos.close();
+			dos.close();
+			//oos.close();
+			
+			System.out.println("Data written successfully");
+		} 
+		catch (IOException e)
+		{
+			
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+}
+
+
