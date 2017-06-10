@@ -1,0 +1,1139 @@
+org.book
+=======================================
+public class book {
+	int bookId;
+	String title;
+	String author;
+	String type;
+	String status;
+	
+	public int getbookId() {
+		return bookId;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public String getType() {
+		return type;
+	}
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public void setType(String type) throws InvalidEntryException {
+		if(type.equalsIgnoreCase("Tech")||type.equalsIgnoreCase("NonTech"))
+		this.type = type;
+		else
+		{
+			throw new InvalidEntryException("enter type Tech or NonTech");
+		}
+	}
+	
+	public void setStatus(String status) throws InvalidEntryException 
+	{
+		if(status.equalsIgnoreCase("A")||status.equalsIgnoreCase("N"))
+		this.status = status;
+		else
+		{
+			throw new InvalidEntryException("Enter category either a or n");
+		}
+	}
+}
+-------------------------------------------------------------------------------------------------------------
+package org.book;
+
+import java.util.ArrayList;
+
+public class Catelog {
+	
+	ArrayList<book> bs=new ArrayList<book>();
+	
+	public void addbook(book b){
+		bs.add(b);
+	}
+	
+	
+	public void searchBook( int bookId)
+	{
+		for (int i = 0; i < 2; i++) 
+		{
+			if(bs.get(i).getbookId()==(bookId))
+			{
+				System.out.println("Displaying details of book"+bookId);
+				System.out.println("Book Id: "+bs.get(i).getbookId());
+				System.out.println("Book title: "+bs.get(i).getTitle());
+				System.out.println("book author: "+bs.get(i).getAuthor());
+				System.out.println("book type: "+bs.get(i).getType());
+				System.out.println("Book status: "+bs.get(i).getStatus());
+				System.out.println("*****************************************");
+				
+				
+			}
+			
+		}
+		
+	}
+
+	public void showBooks()
+	{
+	for (int i = 0; i < 2; i++) 
+		{
+		System.out.println("Displaying details of book"+(i+1));
+		System.out.println("Book Id:"+bs.get(i).getbookId());
+		System.out.println("Book title: "+bs.get(i).getTitle());
+		System.out.println("book author: "+bs.get(i).getAuthor());
+		System.out.println("book type: "+bs.get(i).getType());
+		System.out.println("Book status: "+bs.get(i).getStatus());
+		System.out.println("*****************************************");
+		
+		}	
+	}
+
+}
+=======================================================================================
+Fpackage
+=======================================================================================
+package Fpackage;
+
+import java.util.ArrayList;
+
+public class Employee {
+	int empid;
+	String empname;
+	ArrayList<Flat> flatsold =new ArrayList<Flat>();
+	
+	
+	public Employee(int empid, String empname, ArrayList flatsold) {
+		super();
+		this.empid = empid;
+		this.empname = empname;
+		this.flatsold = flatsold;
+	}
+	
+	
+
+	public Employee(int empid, String empname) {
+		super();
+		this.empid = empid;
+		this.empname = empname;
+	}
+
+
+		//1 method
+	public double calculateIncentive(String  flatType,double flatCost){
+		double incentive;
+		if(flatType.equalsIgnoreCase("1BHK"))
+		{
+			incentive=0.04*flatCost;
+			System.out.println(incentive);
+			return incentive;
+		}
+		else if(flatType.equalsIgnoreCase("2BHK"))
+		{
+			incentive=0.06*flatCost;
+			System.out.println(incentive);
+			return incentive;
+		}
+		else if(flatType.equalsIgnoreCase("3BHK"))
+		{
+			incentive=0.08*flatCost;
+			System.out.println(incentive);
+			return incentive;
+		}
+		else	
+			return 0;
+				
+	}
+	public void addFlat(Flat f)
+	{		//2 method
+		
+		flatsold.add(f);
+		
+	}
+	//3 method
+	public void generateReport(int flatid,String flatType,double flatCost ){
+		System.out.println("empid: "+" "+empid+" "+"empname: "+" "+empname);
+		System.out.println("Flatid:"+" "+flatid+" "+"flattype:"+" "+flatType+"  "+"flatCost:"+" "+flatCost);
+		
+	}
+	
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+public class Flat {
+	private int flatId;
+	private String  flatType;
+	private double flatCost;
+	
+	public Flat(int flatId, String flatType, double flatCost) throws InvalidInputException {
+		super();
+		this.flatId = flatId;
+		if(flatType.equalsIgnoreCase("1BHK")||flatType.equalsIgnoreCase("2BHK")||flatType.equalsIgnoreCase("3BHK"))
+			this.flatType = flatType;
+			else
+			{
+				throw new InvalidInputException("Invalid input");
+			}
+		if(flatCost>=1000000)
+			this.flatCost = flatCost;
+			else                           
+			{
+				throw new InvalidInputException("Invalid input");
+			}
+		
+		
+	}
+
+	public void setFlatId(int flatId) 
+	{
+		this.flatId = flatId;
+	}
+
+	public void setFlatType(String flatType) throws InvalidInputException 
+	{
+		if(flatType.equalsIgnoreCase("1BHK")||flatType.equalsIgnoreCase("2BHK")||flatType.equalsIgnoreCase("3BHK"))
+		this.flatType = flatType;
+		else
+		{
+			throw new InvalidInputException("Invalid input");
+		}
+	}
+
+	public void setFlatCost(double flatCost) throws InvalidInputException {
+		if(flatCost>=1000000)
+		this.flatCost = flatCost;
+		else                           
+		{
+			throw new InvalidInputException("Invalid input");
+		}
+	}
+
+	public int getFlatId() {
+		return flatId;
+	}
+
+	public String getFlatType() {
+		return flatType;
+	}
+
+	public double getFlatCost() {
+		return flatCost;
+	}
+
+	@Override
+	public String toString() {
+		return "Flat [flatId=" + flatId + ", flatType=" + flatType
+				+ ", flatCost=" + flatCost + "]";
+	}	
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+import java.util.Scanner;
+
+public class TestIncentive {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the details of the employee");
+		Employee e1=new Employee(sc.nextInt(), sc.next());
+		Flat[] f=new Flat[2];
+		for(int i=0;i<f.length;i++)
+		{
+			
+			try 
+			{	System.out.println("enter the details of the "+i+" flat sold");
+			System.out.println("enter flatid, flattype, flatcost");
+			int flatid=sc.nextInt();
+			String flattype=sc.next();
+			double flatcost=sc.nextDouble();
+				f[i]=new Flat(flatid, flattype, flatcost);
+				e1.addFlat(f[i]);
+				e1.calculateIncentive(flattype, flatcost);
+				e1.generateReport(flatid, flattype, flatcost);
+			} 
+			catch (InvalidInputException e) 
+			{
+				System.out.println(e.getMessage());
+			}
+			
+		}
+		
+		
+		
+	}
+
+}
+=========================================================================================
+com.store
+===============================================================
+public class Order 
+{
+
+
+
+	int orderId;
+	String custName;
+	float orderAmt;
+	String paymentOption;
+	
+	
+	public Order(int orderId, String custName, float orderAmt,String paymentOption) throws InvalidOrderException {
+		super();
+		
+		this.orderId = orderId;
+		this.custName = custName;
+		
+		if(orderAmt<100)
+		{
+			throw new InvalidOrderException("Order amt should be greater than 100");
+		}
+		else
+		{
+			this.orderAmt = orderAmt;
+		}
+		
+		if(paymentOption.equalsIgnoreCase("Cod")||paymentOption.equalsIgnoreCase("Giftcard")||paymentOption.equalsIgnoreCase("InternetBanking"))
+			
+		this.paymentOption = paymentOption;
+		else
+		{
+			throw new InvalidOrderException("enter valid payment option: Cod, intBanking, giftcard");
+		}
+	}
+
+
+	public int getOrderId() {
+		return orderId;
+	}
+
+
+	public String getCustName() {
+		return custName;
+	}
+
+
+	public float getOrderAmt() {
+		return orderAmt;
+	}
+
+
+	public String getPaymentOption() {
+		return paymentOption;
+	}
+
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+
+
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
+
+
+	public void setOrderAmt(float orderAmt) {
+		this.orderAmt = orderAmt;
+	}
+
+
+	public void setPaymentOption(String paymentOption) {
+		this.paymentOption = paymentOption;
+	}	
+}
+---------------------------------------------------------------------------------------------------------------
+import java.util.TreeMap;
+
+public class OrderServiceUtil
+	{
+	Order order;
+	
+		
+	public OrderServiceUtil(Order order)
+	{
+		super();
+		this.order = order;
+	}
+
+	public void addOrder(Order o1)
+		{
+			TreeMap<Integer, String> tm=new TreeMap<Integer, String>();
+			tm.put(o1.orderId, o1.custName);
+			System.out.println("Your order has added");
+		
+		}
+	
+		public Order searchOrder(int orderId)	/////////////////////////
+		{
+			System.out.println("Your order found");
+			
+			return order;
+		
+		}
+	
+	public float findTotal()	////////////////////////////
+	{
+		return 0;
+		
+	}
+
+}
+-------------------------------------------------------------------------------------------------------------------------
+======================================================================
+com.book
+======================================================================
+public class Book implements Serializable
+{
+	
+	String bookId;
+	String title;
+	String author;
+	String category;
+	float price;
+	
+	
+	public Book(String bookId, String title, String author, String category,float price) throws invalidBookException {
+		super();
+		if(bookId.length()!=4&&bookId.charAt(0)!='B')
+			throw new invalidBookException("bookid should starts with B & must have length 4");
+		else
+		this.bookId = bookId;	
+		
+		this.title = title;
+		this.author = author;
+		
+		if(category.equalsIgnoreCase("Science")||category.equalsIgnoreCase("Fiction")||category.equalsIgnoreCase("Technology"))
+		this.category = category;
+		else
+		{
+			throw new invalidBookException("Give valid category");
+		}
+		
+		if(price>0)
+		this.price = price;
+		else
+		{
+			throw new invalidBookException("price should be positive");
+		}
+	}
+
+
+	public Book() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public String getBookId() {
+		return bookId;
+	}
+
+
+	public void setBookId(String bookId) {
+		this.bookId = bookId;
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public String getAuthor() {
+		return author;
+	}
+
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+
+	public String getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+	public float getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", title=" + title + ", author="
+				+ author + ", category=" + category + ", price=" + price
+				+ ", getBookId()=" + getBookId() + ", getTitle()=" + getTitle()
+				+ ", getAuthor()=" + getAuthor() + ", getCategory()="
+				+ getCategory() + ", getPrice()=" + getPrice() + "]";
+	}
+	
+	
+
+}
+----------------------------------------------------------------------------------------------------------------------------
+import java.util.ArrayList;
+
+public class BookStore {
+	ArrayList<Book> bk=new ArrayList<Book>();
+	
+	public void addBook(Book b){
+		bk.add(b);
+		}
+	
+	
+	public void searchByTitle(String title){
+		for (int i = 0; i < 2; i++)
+		{
+			if(bk.get(i).getTitle().equals(title))
+			{
+				System.out.println("displaying book details: "+title);
+				System.out.println("Book id:"+bk.get(i).getBookId());
+				System.out.println("Book title:"+bk.get(i).getTitle());
+				System.out.println("Bookauthor:"+bk.get(i).getAuthor());
+				System.out.println("Book price:"+bk.get(i).getPrice());
+				System.out.println("Book category:"+bk.get(i).getCategory());
+				System.out.println("***************************************");
+			}
+			else
+			{
+				System.out.println("Book not found for the given title");
+			}
+			}
+		
+	}
+	
+	
+	public void searchByAuthor(String author){
+		for (int i = 0; i < 2; i++) 
+		{
+			if(bk.get(i).getAuthor().equals(author)){
+				
+			
+				System.out.println("displaying book details: "+author);
+				System.out.println("Book id:"+bk.get(i).getBookId());
+				System.out.println("Book title:"+bk.get(i).getTitle());
+				System.out.println("Bookauthor:"+bk.get(i).getAuthor());
+				System.out.println("Book price:"+bk.get(i).getPrice());
+				System.out.println("Book category:"+bk.get(i).getCategory());
+				System.out.println("***************************************");
+			}
+			else
+			{
+			System.out.println("Book not found for the given author");
+			}
+		}
+	}
+
+	
+	public void displayAll(){
+		for (int i = 0; i < 2; i++) 
+		{
+			System.out.println("Displaying details of book:"+(i+1));
+			System.out.println("Book id:"+bk.get(i).getBookId());
+			System.out.println("Book title:"+bk.get(i).getTitle());
+			System.out.println("Bookauthor:"+bk.get(i).getAuthor());
+			System.out.println("Book price:"+bk.get(i).getPrice());
+			System.out.println("Book category:"+bk.get(i).getCategory());
+			System.out.println("***************************************");
+		}
+		
+	}
+}
+
+------------------------------------------------------------------------------------------------------------------------------------
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Scanner;
+
+import javax.rmi.CORBA.Tie;
+
+import com.book.Book;
+import com.book.BookStore;
+import com.book.invalidBookException;
+
+public class BookUtil {
+	public static void main(String[] args) {
+		
+		Scanner sc=new Scanner(System.in);
+		
+		BookStore bs=new BookStore();
+		
+		Book b[]=new Book[2];
+		try  
+		{
+		File f=new File("Book.txt");
+		
+		FileOutputStream fos=new FileOutputStream(f);				
+		//ObjectOutputStream oos=new ObjectOutputStream(fos);
+		DataOutputStream dos=new DataOutputStream(fos);
+		
+		FileInputStream fis=new FileInputStream(f);
+		//ObjectInputStream ois=new ObjectInputStream(fis);
+		DataInputStream dis=new DataInputStream(fis);
+		
+		
+		for (int i = 0; i < 2; i++)
+		{
+				
+				System.out.println("Enter details of the book"+(i+1));
+				System.out.println("enter bookId");
+				String id=sc.next();
+				System.out.println("enter title");
+				String tit=sc.next();
+				System.out.println("enter author");
+				String aut=sc.next();
+				System.out.println("enter price");
+				float pri=sc.nextFloat();
+				System.out.println("enter category");
+				String cat=sc.next();
+				b[i]=new Book(id, tit, aut, cat, pri);
+				bs.addBook(b[i]);
+					
+				
+				dos.writeBytes(b[i].toString());
+				//oos.writeObject(b[i]);
+				System.out.println("Data written successfully");
+				
+				
+				//Book b5=(Book) ois.readObject();
+				System.out.println("Data retrieved successfully \n");
+				int ch;
+				while((ch=dis.read())!=-1)
+				{
+					System.out.print((char)ch);
+					
+				}
+			
+		}
+		}
+		
+		catch (invalidBookException e)
+		{
+			System.out.println(e.getMessage());;
+			System.exit(0);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Enter the title to search:");
+		String t1=sc.next();
+		
+		bs.searchByTitle(t1);
+		
+		
+		
+		System.out.println("Enter the author to search:");
+		String a1=sc.next();
+		
+		bs.searchByAuthor(a1);
+		
+		
+		bs.displayAll();
+		
+		}
+		
+	}
+=======================================================================
+Bankex
+=======================================================================
+public class Account {
+	private int accNo;
+	private Customer c;
+	private double balance;
+	
+	public int getAccNo() {
+		return accNo;
+	}
+	public Customer getC() {
+		return c;
+	}
+	public double getBalance() {
+		return balance;
+	}
+	
+	
+	public void setAccNo(int accNo) {
+		this.accNo = accNo;
+	}
+	
+	public void setC(Customer c) {
+		this.c = c;
+	}
+	
+	public void setBalance(double balance)
+	{ 
+		this.balance=balance;
+	}
+	
+	
+	
+	
+	public Account(int accNo, Customer c, double balance) {
+		super();
+		this.accNo = accNo;
+		this.c = c;
+		this.balance = balance;
+	}
+	public Account() {
+		
+	}
+	
+	
+	public void deposit(double amt)		//1 method
+	{	
+		
+		this.balance=this.balance+amt;
+		System.out.println("current balance after deposition: "+this.balance);
+	}
+	
+	
+	public void withdrawal(double amt) throws LowBalanceException		//2 method
+	{
+		
+		if(this.balance<=1000)
+		
+		{
+			throw new LowBalanceException("balance in acc should be grater than 1000");
+		}
+		else
+		{
+			this.balance=this.balance-amt;
+			System.out.println("Amount withdrawn, current balance is: "+this.balance);
+		}	
+		
+			
+	}
+		
+	public void accountSummary() 
+	{	
+		for (int i = 0; i < 2; i++)
+		{
+			System.out.println("Entering summary of account: "+(i+1));
+			System.out.println("AccNo: "+getAccNo());
+			System.out.println("Customer Name: "+getC());
+			System.out.println("Balance: "+getBalance());
+		}
+		
+		
+		
+	}
+}
+----------------------------------------------------------------------------------------------------------------------------------
+import java.util.ArrayList;
+
+public class Bank 
+{
+	private ArrayList<Account> accList=new ArrayList<Account>();
+	
+	
+	public void openAccount(Account a)		// 1 method
+	{
+		accList.add(a);
+	}
+
+
+	public ArrayList<Account> getAccList() {
+		return accList;
+	}
+
+
+	public void setAccList(ArrayList<Account> accList) {
+		this.accList = accList;
+	}
+	
+----------------------------------------------------------------------------------------------------------------------------------------
+public class Customer {
+	private String cName;
+	private long contact;
+	private String email;
+	private String PAN;
+	
+	
+	public Customer(String cName, long contact, String email, String PAN) throws InvalidPANException {
+		super();
+		this.cName = cName;
+		this.contact = contact;
+		this.email = email;
+		
+		if(PAN.length()!=10)
+			throw new InvalidPANException("enter valid pan no of length 10");
+		else
+		{
+		this.PAN = PAN;
+		}
+	}
+
+
+	public Customer(String next, String next2) {
+		
+	}
+
+
+	public void setcName(String cName) {
+		this.cName = cName;
+	}
+
+
+	public void setPAN(String pAN) {
+		PAN = pAN;
+	}
+
+
+	public String getcName() {
+		return cName;
+	}
+
+
+	public long getContact() {
+		return contact;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public String getPAN() {
+		return PAN;
+	}
+
+
+	public void setContact(long contact) {
+		this.contact = contact;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
+
+}
+--------------------------------------------------------------------------------------------------
+public class PublicBank {
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		
+		
+		Account[] arr=new Account[2];
+		
+		
+		Bank b=new Bank();
+	
+		for (int i = 0; i < arr.length; i++)
+		{
+			
+			Customer c;
+			try
+			{
+				arr[i]= new Account();
+				System.out.println("Enter account no: ");
+				int accNo=sc.nextInt();
+				arr[i].setAccNo(accNo);
+				System.out.println("Enter account balance : ");
+				double bal=sc.nextDouble();
+				arr[i].setBalance(bal);
+				System.out.println("Enter Customer Name: ");
+				String cName=sc.next();
+				System.out.println("Enter cust contact:");
+				long cont=sc.nextLong();
+				System.out.println("Enter email: ");
+				String email=sc.next();
+				System.out.println("Enter PAN no of length 10");
+				String pan=sc.next();
+				c = new Customer(cName, cont, email, pan);
+				arr[i].setC(c);
+				
+				b.openAccount(arr[i]);
+				
+				
+				System.out.println("enter amt to deposit: ");
+				double a1=sc.nextDouble();
+				System.out.println("this.balance"+arr[i].getBalance());
+				arr[i].deposit(a1);
+				System.out.println("***********************************");
+				
+				System.out.println("enter amt to withdrawal: ");
+				double w1=sc.nextDouble();
+				arr[i].withdrawal(w1);
+				System.out.println("***********************************");
+				
+				
+				
+				
+				arr[i].accountSummary();
+				
+			
+				
+			} 
+			catch (InvalidPANException e)
+			{
+				System.out.println(e.getMessage());
+				System.exit(0);
+				
+			}
+			catch (LowBalanceException e)
+			{
+				
+				e.printStackTrace();
+			}
+		}
+	}
+		/*File f=new File("BankDetails.txt");
+		FileOutputStream fos=new FileOutputStream(f);
+		FileInputStream fis*/
+}
+=============================================================================
+public class Account implements Comparable<Account>
+{
+	String accNum;
+	double accBal;
+	String chequeBookStatus;
+	
+	
+
+	public String getAccNum() {
+		return accNum;
+	}
+
+	public double getAccBal() {
+		return accBal;
+	}
+
+	public String getChequeBookStatus() {
+		return chequeBookStatus;
+	}
+
+	public void setAccNum(String accNum) throws invaliDataException {
+		
+		if(accNum.startsWith("ACC"))
+			this.accNum = accNum;
+		else
+		{
+			throw new invaliDataException("Enter valid accNum starts with 'ACC'");
+		}
+	}
+
+	public Account(String accNum, double accBal, String chequeBookStatus) {
+		super();
+		this.accNum = accNum;
+		this.accBal = accBal;
+		this.chequeBookStatus = chequeBookStatus;
+	}
+
+	public Account() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void setAccBal(double accBal) throws invaliDataException {
+		if(accBal>1000)
+		this.accBal = accBal;
+		else
+		{
+			throw new invaliDataException("Account bal must be grater than 1000");
+		}
+	}
+
+
+	public void setChequeBookStatus(String chequeBookStatus) throws invaliDataException {
+		
+		if(chequeBookStatus.equalsIgnoreCase("YES")||chequeBookStatus.equalsIgnoreCase("NO"))
+		this.chequeBookStatus = chequeBookStatus;
+		
+		else
+		{
+			throw new invaliDataException("Status must be yes or no");
+		}
+		
+	}
+
+	@Override
+	public int compareTo(Account o) 
+	{
+		return this.accNum.compareTo(o.accNum);
+		 
+	}
+
+	@Override
+	public String toString() {
+		return "Account [accNum=" + accNum + ", accBal=" + accBal
+				+ ", chequeBookStatus=" + chequeBookStatus + "]";
+	}
+	
+	
+
+}
+---------------------------------------------------------------------------
+public class Customer {
+	int custNo;
+	String custname;
+	int custPhone;
+	TreeSet<Account> trs=new TreeSet<Account>(); 		//TreeSet of type account
+	
+	
+	
+	
+	public void setCustNo(int custNo) {
+		this.custNo = custNo;
+	}
+
+	public void setCustname(String custname) {
+		this.custname = custname;
+	}
+
+	public void setCustPhone(int custPhone) {
+		this.custPhone = custPhone;
+	}
+
+	public void setTrs(TreeSet<Account> trs) {
+		this.trs = trs;
+	}
+
+	
+	public Customer(int custNo, String custname, int custPhone) {
+		super();
+		this.custNo = custNo;
+		this.custname = custname;
+		this.custPhone = custPhone;
+	}
+
+	public Customer() {			//default constructor
+		// TODO Auto-generated constructor stub
+	}
+
+	public void addAccount(Account a){
+		trs.add(a);
+	}
+	
+	public TreeSet getAccountList(){
+		Iterator<Account> itr= trs.iterator();
+		while(itr.hasNext())
+		{   //?
+		Account acc=itr.next();
+		System.out.println(acc);
+		
+		}
+		return trs;
+		
+	}
+	public void printBal(Account ap){
+		Iterator<Account> itr=trs.iterator();
+		while(itr.hasNext()){
+			Account acc=itr.next();
+			if(acc.accNum.equalsIgnoreCase(ap.accNum))
+			{
+				System.out.println(acc.getAccBal());
+			}
+			
+			System.out.println();
+		}
+		
+		
+	}
+----------------------------------------------------------------------------------------------------
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.util.Scanner;
+
+import com.bank.Account;
+import com.bank.Customer;
+import com.bank.invaliDataException;
+
+public class BankUtil {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the details of a customer");
+		System.out.println("enter customer no");
+		Customer c1=new Customer();
+		c1.setCustNo(sc.nextInt());
+		System.out.println("enter cust name");
+		c1.setCustname(sc.next());
+		System.out.println("enter cust phone no");
+		c1.setCustPhone(sc.nextInt());
+		
+		//Customer c1=new Customer(sc.nextInt(), sc.next(), sc.nextInt());
+		
+		
+		Account[] arr=new Account[2];
+		for(int i=0;i<2;i++) 			//not <= 
+		  {
+			
+			try 
+			{
+				arr[i]=new Account();
+				System.out.println("enter the details of the acc "+i+1);
+				System.out.println("enter accNo, accBal, chequeBookStatus");
+				System.out.println("enter accNo");
+				arr[i].setAccNum(sc.next());
+				System.out.println("enter acc balance");
+				arr[i].setAccBal(sc.nextInt());
+				System.out.println("chequeBookststus");
+				arr[i].setChequeBookStatus(sc.next());
+				
+				c1.addAccount(arr[i]);
+			} 
+			catch (invaliDataException e)
+			{
+				
+				System.out.println(e.getMessage());
+				System.exit(0);
+			}
+			
+		  }
+		
+			c1.getAccountList();
+		
+		
+		for(int i=0;i<2;i++){
+			System.out.println("Account Balance:");
+			c1.printBal(arr[i]);
+	
+		}
+		
+		
+	}
+}
+============================================================================
+
+
+
